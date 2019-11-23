@@ -2,7 +2,7 @@
     Document   : edit
     Created on : 12-nov-2019, 22:26:50
     Author     : idrzI
-    porque autor
+
 --%>
 
 <%@page import="Modelo.Empleado"%>
