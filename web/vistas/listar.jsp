@@ -13,21 +13,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
-        <div>
+        <div class="container">
             <h1>Empleados</h1>
-            <a href="Controlador?accion=add" >Agregar Nuevo</a>
-            <table>
+            <a class="btn btn-success"  href="Controlador?accion=add" >Agregar Nuevo</a>
+            <br>
+            <table class="table" >
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Cedula</th>
-                        <th>Profesion</th>
-                        <th>Acciones</th>
+                        <th class="text-center" >ID</th>
+                        <th class="text-center">Nombres</th>
+                        <th class="text-center">Apellidos</th>
+                        <th class="text-center">Cedula</th>
+                        <th class="text-center">Profesion</th>
+                        <th class="text-center">Acciones</th>
                         
                     </tr>
                 </thead>
@@ -46,14 +48,14 @@
                 
                 <tbody>
                     <tr>
-                        <td> <%= emp.getV_id()%> </td>
-                        <td><%= emp.getV_nombre()%></td>
-                        <td><%= emp.getV_apellido() %></td>
-                        <td><%= emp.getV_identificacion() %></td>
-                        <td><%= emp.getV_profesion() %></td>
-                        <td>
-                            <a href="Controlador?accion=editar&id=<%= emp.getV_id()%>" >Editar</a>
-                            <a>Eliminar</a>
+                        <td class="text-center"> <%= emp.getV_id()%> </td>
+                        <td class="text-center"><%= emp.getV_nombre()%></td>
+                        <td class="text-center"><%= emp.getV_apellido() %></td>
+                        <td class="text-center"><%= emp.getV_identificacion() %></td>
+                        <td class="text-center"><%= emp.getV_profesion() %></td>
+                        <td class="text-center">
+                            <a class="btn btn-warning" href="Controlador?accion=editar&id=<%= emp.getV_id()%>" >Editar</a>
+                            <a class="btn btn-danger" href="Controlador?accion=eliminar&id=<%= emp.getV_id()%>">Eliminar</a>
                         </td>
                     </tr>            
                     <%}%>

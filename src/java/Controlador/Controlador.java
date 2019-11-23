@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static jdk.nashorn.internal.runtime.Debug.id;
 
 /**
  *
@@ -25,6 +26,8 @@ public class Controlador extends HttpServlet {
     String edit="vistas/edit.jsp";
     Empleado e=new Empleado();
     EmpleadoDAO dao=new EmpleadoDAO();
+    int id;
+ 
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -98,10 +101,51 @@ public class Controlador extends HttpServlet {
             
             acceso=listar;
             
+        }else if(action.equalsIgnoreCase("editar")){
+            request.setAttribute("idemp", request.getParameter("id"));
+            acceso=edit;
+        }
+        else if(action.equalsIgnoreCase("Actualizar")){
+            
+            id=Integer.parseInt(request.getParameter("txtid"));
+            
+            String nom=request.getParameter("txtNom");
+            String ape=request.getParameter("txtApell");
+            String ced=request.getParameter("txtCed");
+            String sex=request.getParameter("cbSex");
+            String estcivil=request.getParameter("cbEstadoCivil");
+            String pro=request.getParameter("cbProfesion");
+            String nac=request.getParameter("cbNacionalidad");
+            String fnac=request.getParameter("txtFecNac");
+            String fing=request.getParameter("txtFecIng");
+            String mail=request.getParameter("txtEmail");
+            
+            e.setV_id(id);
+            
+            e.setV_nombre(nom);
+            e.setV_apellido(ape);
+            e.setV_identificacion(ced);
+            e.setV_sexo(sex);
+            e.setV_estado_civil(estcivil);
+            e.setV_profesion(pro);
+            e.setV_nacionalidad(nac);
+            e.setV_fec_nacimiento(fnac);
+            e.setV_fec_ingreso(fing);
+            e.setV_email(mail);
+            
+            dao.edit(e);
+            acceso=listar;
+        }else if(action.equalsIgnoreCase("eliminar")){
+            id = Integer.parseInt(request.getParameter("id"));
+            e.setV_id(id);
+            dao.eliminar(id);
+            acceso=listar;
         }
         
         RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);
+        
+        
         
     }
 
